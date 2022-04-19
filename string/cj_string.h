@@ -2,9 +2,11 @@
  * @Author       : CaoJie
  * @Date         : 2022-04-15 11:31:24
  * @LastEditors  : CaoJie
- * @LastEditTime : 2022-04-15 15:58:53
+ * @LastEditTime : 2022-04-19 16:57:10
  * @Description  : file content
  */
+#ifndef _CJ_STRING_H_
+#define _CJ_STRING_H_
 // string 与 array的区别为：string末尾有‘\0’
 #include <stdio.h>
 
@@ -26,3 +28,4 @@ void stringSort(char *string, unsigned int stringLen, short mode);
  * @return {*}
  */
 void appendString(char *srcString, char *desString, unsigned int srcStringLen, unsigned int desStringLen, unsigned int index);
+#endif

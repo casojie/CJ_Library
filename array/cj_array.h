@@ -2,9 +2,11 @@
  * @Author       : CaoJie
  * @Date         : 2022-04-15 11:33:52
  * @LastEditors  : CaoJie
- * @LastEditTime : 2022-04-15 12:10:22
+ * @LastEditTime : 2022-04-19 16:55:37
  * @Description  : file content
  */
+#ifndef _CJ_ARRAY_H_
+#define _CJ_ARRAY_H_
 #include <stdio.h>
 
 /**
@@ -39,3 +41,4 @@ unsigned int findMaxElement(void *array, unsigned int arrayLen, void *maxElement
  * @return {unsigned int} 目标元素下标：小于0，查找失败，大于0：目标元素下标
  */
 unsigned int findMinElement(void *array, unsigned int arrayLen, void *minElement);
+#endif

@@ -2,9 +2,11 @@
  * @Author       : CaoJie
  * @Date         : 2022-04-15 15:25:18
  * @LastEditors  : CaoJie
- * @LastEditTime : 2022-04-15 15:46:59
+ * @LastEditTime : 2022-04-19 16:56:31
  * @Description  : file content
  */
+#ifndef _CJ_NETWORK_H_
+#define _CJ_NETWORK_H_
 #include <stdio.h>
 
 /**
@@ -23,3 +25,5 @@ int creatListenTCPSocket(const char *port, const char *ip, int maxListenLen);
  * @return {*} 大于0：创建成功返回的监听套接字socket 小于0：失败
  */
 int creatListenUDPSocket(const char *port, const char *ip, int maxListenLen);
+
+#endif

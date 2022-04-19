@@ -2,7 +2,7 @@
  * @Author       : CaoJie
  * @Date         : 2022-04-18 16:13:55
  * @LastEditors  : CaoJie
- * @LastEditTime : 2022-04-18 16:52:30
+ * @LastEditTime : 2022-04-19 17:07:47
  * @Description  : file content
  */
 #include <stdio.h>
@@ -25,10 +25,12 @@
  */
 int creatListenTCPSocket(const char *port, const char *ip, int maxListenLen)
 {
+    const char *TAG = "creatListenTCPSocket";
+
     int socke = socket(AF_INET, SOCK_STREAM, 0);
     if (socke < 0)
     {
-        printf("can't creat source socke\n");
+        printf("[%s]: can't creat source socke\n", TAG);
         return -1;
     }
 
@@ -38,25 +40,25 @@ int creatListenTCPSocket(const char *port, const char *ip, int maxListenLen)
 
     if ((local.sin_port = htons((unsigned short)atoi(port))) == 0)
     {
-        printf("can't get \"%s\" service entry\n", port);
+        printf("[%s]: can't get \"%s\" service entry\n", TAG, port);
         return -2;
     }
 
     if ((local.sin_addr.s_addr = inet_addr(ip)) == INADDR_NONE)
     {
-        printf("can't get \"%s\" host entry\n", ip);
+        printf("[%s]: can't get \"%s\" host entry\n", TAG, ip);
         return -3;
     }
 
     if (bind(socke, (struct sockaddr *)&local, sizeof(local)) != 0)
     {
-        printf("can't bind socket and sockaddr\n");
+        printf("[%s]: can't bind socket and sockaddr\n", TAG);
         return -4;
     }
 
     if (listen(socke, maxListenLen) < 0)
     {
-        printf("can't listen socke\n");
+        printf("[%s]: can't listen socke\n", TAG);
         return -5;
     }
 

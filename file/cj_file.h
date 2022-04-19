@@ -2,20 +2,22 @@
  * @Author       : CaoJie
  * @Date         : 2022-04-15 15:48:48
  * @LastEditors  : CaoJie
- * @LastEditTime : 2022-04-19 09:19:06
+ * @LastEditTime : 2022-04-19 16:55:01
  * @Description  : file content
  */
+#ifndef _CJ_FILE_H_
+#define _CJ_FILE_H_
 #include <stdio.h>
 
 /**
- * @Descripttion: 将string 输出到文件上
- * @param {char*} filePath
- * @param {char*} string
- * @param {unsigned int} stringLen
- * @param {short} mode
- * @return {*}
+ * @Descripttion: 输出到文件上
+ * @param {char} *filePath 输出目标文件路径
+ * @param {char} *string 输出内容
+ * @param {unsigned int} stringLen 内容长度
+ * @param {char} *mode 文件打开模式，参数位fopen的打开参数
+ * @return {int} 实际写入文件的长度
  */
-int outputStringToFile(const char *filePath, char *string, const unsigned int stringLen, const short mode);
+int outputStringToFile(const char *filePath, char *string, const unsigned int stringLen, const char *mode);
 //tty操作类=======================================================================================================
 /**
  * @Descripttion: open打开tty设备
@@ -64,3 +66,5 @@ int ttyDeviceWrite(int devicefd, char *writeBuff, unsigned int writeBuffLen, uns
  * @return {int} 小于0：失败 其他：实际读取的长度 
  */
 int ttyDeviceRead(int devicefd, char *readBuff, unsigned int len, unsigned int timeOut);
+
+#endif

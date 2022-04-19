@@ -12,15 +12,69 @@
 #include "cj_file.h"
 
 /**
- * @Descripttion: 将string 输出到文件上
- * @param {char*} filePath
- * @param {char*} string
- * @param {unsigned int} stringLen
- * @param {short} mode
+ * @Descripttion: 输出到文件上
+ * @param {char} *filePath 输出目标文件路径
+ * @param {char} *string 输出内容
+ * @param {unsigned int} stringLen 内容长度
+ * @param {char} *mode 文件打开模式，参数位fopen的打开参数
+ * @return {int} 实际写入文件的长度
+ */
+int outputStringToFile(const char *filePath, char *string, const unsigned int stringLen, const char *mode)
+{
+    const char *TAG = "outputStringToFile";
+
+    if (NULL == filePath || NULL == string || NULL == mode || 0 == stringLen)
+    {
+        printf("[%s]: argv error\n", TAG);
+        return -1;
+    }
+
+    FILE *pFile = NULL;
+    pFile = fopen(filePath, mode);
+    if (NULL == pFile)
+    {
+        printf("[%s]: fopen \"%s\" error\n", TAG, filePath);
+        return -2;
+    }
+
+    int writeLen = fwrite(string, 1, stringLen, pFile);
+    if (stringLen != writeLen)
+    {
+        printf("[%s]: write error\n", TAG);
+        if (0 < writeLen)
+        {
+            printf("[%s]: warning: write len is nor string len\n", TAG);
+        }
+        fclose(pFile);
+    }
+    fclose(pFile);
+
+    return writeLen;
+}
+// tty操作类=======================================================================================================
+/**
+ * @Descripttion: tty设备写函数ttyDeviceWrite 所依赖函数
+ * @param {*}
  * @return {*}
  */
-int outputStringToFile(const char *filePath, char *string, const unsigned int stringLen, const short mode);
-// tty操作类=======================================================================================================
+int os_get_tick()
+{
+    static int basic_ms = 0;
+    struct timeval struTime;
+    int ms = 0;
+
+    memset(&struTime, 0, sizeof(struct timeval));
+
+    if (basic_ms == 0)
+    {
+        gettimeofday(&struTime, NULL);
+        basic_ms = (((int)struTime.tv_sec * 1000) + (struTime.tv_usec / 1000));
+    }
+    gettimeofday(&struTime, NULL);
+    ms = (((int)struTime.tv_sec * 1000) + (struTime.tv_usec / 1000));
+
+    return (ms - basic_ms);
+}
 /**
  * @Descripttion: open打开tty设备
  * @param {char*} devicePath tty设备地址
@@ -28,6 +82,7 @@ int outputStringToFile(const char *filePath, char *string, const unsigned int st
  */
 int ttyDeviceOpen(const char *devicePath)
 {
+    const char *TAG = "ttyDeviceOpen";
     int devicefd = -1;
 
     if (NULL == devicePath)
@@ -38,7 +93,7 @@ int ttyDeviceOpen(const char *devicePath)
     devicefd = open(devicePath, O_RDWR | O_NOCTTY | O_NDELAY);
     if (devicefd < 0)
     {
-        printf("\n open %s, failure:%d\n", devicePath, devicefd);
+        printf("[%s]: \n open %s, failure:%d\n", TAG, devicePath, devicefd);
         return -2;
     }
 
@@ -56,7 +111,7 @@ void ttyDeviceClose(int devicefd)
         return;
     }
 
-    return close(devicefd);
+    close(devicefd);
 }
 /**
  * @Descripttion: 操作Linux tty设备，串口等，此函数初始化tty设备
@@ -66,12 +121,13 @@ void ttyDeviceClose(int devicefd)
  */
 int ttyDeviceInit(const char *devicePath, unsigned int baudRate)
 {
+    const char *TAG = "ttyDeviceInit";
     int devicefd = -1;
     int ret = -1;
 
     if (NULL == devicePath)
     {
-        printf("devicePath is NULL \n");
+        printf("[%s]: devicePath is NULL \n", TAG);
         return -1;
     }
 
@@ -79,14 +135,14 @@ int ttyDeviceInit(const char *devicePath, unsigned int baudRate)
 
     if (devicefd < 0)
     {
-        printf("\n %s tty open error......\n", devicePath);
+        printf("[%s]: \n %s tty open error......\n", TAG, devicePath);
         return -2;
     }
 
     ret = ttyDeviceConfig(devicefd, baudRate, 8, 'N', 1);
     if (0 != ret)
     {
-        printf("\n set tty option failure......\n");
+        printf("[%s]: \n set tty option failure......\n", TAG);
         ttyDeviceClose(devicefd);
         devicefd = -1;
         return -3;
@@ -105,13 +161,14 @@ int ttyDeviceInit(const char *devicePath, unsigned int baudRate)
  */
 int ttyDeviceConfig(int devicefd, unsigned int baudRate, int dateBits, char event, int stopBits)
 {
+    const char *TAG = "ttyDeviceConfig";
     struct termios ttyTermios;
 
     bzero(&ttyTermios, sizeof(ttyTermios));
 
     if (0 != tcgetattr(devicefd, &ttyTermios))
     {
-        printf("tcgetattr error......\n");
+        printf("[%s]: tcgetattr error......\n", TAG);
         return -1;
     }
 
@@ -261,7 +318,7 @@ int ttyDeviceConfig(int devicefd, unsigned int baudRate, int dateBits, char even
 
     if (tcsetattr(devicefd, TCSANOW, &ttyTermios) != 0)
     {
-        printf("tcsetattr error......\n");
+        printf("[%s]: tcsetattr error......\n", TAG);
         return -2;
     }
 
@@ -278,6 +335,8 @@ int ttyDeviceConfig(int devicefd, unsigned int baudRate, int dateBits, char even
  */
 int ttyDeviceWrite(int devicefd, char *writeBuff, unsigned int writeBuffLen, unsigned int timeOut)
 {
+    const char *TAG = "ttyDeviceWrite";
+
     int tmpLen = 0;
     int leftLen = 0;
     int writeLen = 0;
@@ -285,7 +344,7 @@ int ttyDeviceWrite(int devicefd, char *writeBuff, unsigned int writeBuffLen, uns
 
     if ((devicefd < 0) || (NULL == writeBuff))
     {
-        printf("devicefd or writeBuff is NULL\n");
+        printf("[%s]: devicefd or writeBuff is NULL\n", TAG);
         return -1;
     }
 
@@ -318,10 +377,12 @@ int ttyDeviceWrite(int devicefd, char *writeBuff, unsigned int writeBuffLen, uns
  * @param {char} *readBuff 读入内容存储地址
  * @param {unsigned int} len 期望读取的长度
  * @param {unsigned int} timeOut 超时时间
- * @return {int} 小于0：失败 其他：实际读取的长度 
+ * @return {int} 小于0：失败 其他：实际读取的长度
  */
 int ttyDeviceRead(int devicefd, char *readBuff, unsigned int len, unsigned int timeOut)
 {
+    const char *TAG = "ttyDeviceRead";
+
     int ret = -1;
     int readLen = 0;
     fd_set FDS;
