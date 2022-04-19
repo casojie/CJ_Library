@@ -1,5 +1,7 @@
 # CJ_Library
 
+### 2022-4-19
+* 添加tty设备操作函数，完成TCP服务器创建函数
 ## 2022-4-15
 * 添加file,network,string, array的函数大纲，暂时想起需要写的函数
 ## init
