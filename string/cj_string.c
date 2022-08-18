@@ -8,10 +8,10 @@
 #include "cj_string.h"
 
 /**
- * @Descripttion: ×Ö·û´®ÅÅĞò£¬¶Ô×Ö·û´®°´ÕÕASIIÂë½øĞĞÅÅĞò
- * @param {char} *string Ä¿±ê×Ö·û´®
- * @param {unsigned int} stringLen Ä¿±ê×Ö·û´®³¤¶È£¬×¢Òâ£º°üÀ¨Ä©Î²µÄ'\0'
- * @param {short} mode ÅÅĞòÄ£Ê½ 0£º´ÓĞ¡µ½´ó 1:´Ó´óµ½Ğ¡
+ * @Descripttion: å­—ç¬¦ä¸²æ’åºï¼Œå¯¹å­—ç¬¦ä¸²æŒ‰ç…§ASIIç è¿›è¡Œæ’åº
+ * @param {char} *string ç›®æ ‡å­—ç¬¦ä¸²
+ * @param {unsigned int} stringLen ç›®æ ‡å­—ç¬¦ä¸²é•¿åº¦ï¼Œæ³¨æ„ï¼šåŒ…æ‹¬æœ«å°¾çš„'\0'
+ * @param {short} mode æ’åºæ¨¡å¼ 0ï¼šä»å°åˆ°å¤§ 1:ä»å¤§åˆ°å°
  * @return {*}
  */
 void stringSort(char *string, unsigned int stringLen, short mode)
@@ -19,15 +19,15 @@ void stringSort(char *string, unsigned int stringLen, short mode)
     unsigned int pos = 0;
     unsigned int index = 0;
     unsigned int gap = 0;
-    // gapÎª²½³¤£¬Ã¿´Î¼õÎªÔ­À´µÄÒ»°ë¡£
+    // gapä¸ºæ­¥é•¿ï¼Œæ¯æ¬¡å‡ä¸ºåŸæ¥çš„ä¸€åŠã€‚
     for (gap = stringLen / 2; gap > 0; gap /= 2)
     {
-        // ¹²gap¸ö×é£¬¶ÔÃ¿Ò»×é¶¼Ö´ĞĞÖ±½Ó²åÈëÅÅĞò
+        // å…±gapä¸ªç»„ï¼Œå¯¹æ¯ä¸€ç»„éƒ½æ‰§è¡Œç›´æ¥æ’å…¥æ’åº
         for (pos = 0; pos < gap; pos++)
         {
             for (index = pos + gap; index < stringLen; index += gap)
             {
-                // Èç¹ûstring[index] < string[index-gap]£¬ÔòÑ°ÕÒstring[index]Î»ÖÃ£¬²¢½«ºóÃæÊı¾İµÄÎ»ÖÃ¶¼ºóÒÆ¡£
+                // å¦‚æœstring[index] < string[index-gap]ï¼Œåˆ™å¯»æ‰¾string[index]ä½ç½®ï¼Œå¹¶å°†åé¢æ•°æ®çš„ä½ç½®éƒ½åç§»ã€‚
                 if (0 == mode)
                 {
                     if (string[index] < string[index - gap])
@@ -62,16 +62,16 @@ void stringSort(char *string, unsigned int stringLen, short mode)
 }
 
 /**
- * @Descripttion: ¶Ô×Ö·û´®½øĞĞ²åÈëºÏ²¢²Ù×÷²úÉúĞÂµÄ×Ö·û´®
- * @param {char} *desString ²åÈëÄ¿±êstring
- * @param {char} *srcString ²åÈëÄÚÈİ
- * @param {int} desStringLen ²åÈëÄ¿±êstringÔ­±¾ÓĞĞ§³¤¶È
- * @param {int} maxDesStringLen Ä¿±êstring×î´óÄÜ´æ´¢µÄ×Ö½ÚÊı
- * @param {int} srcStringLen ²åÈëÄÚÈİ³¤¶È
- * @param {int} index ²åÈëÎ»ÖÃÏÂ±ê
- * @param {short} mode ÊÇ·ñÔÊĞíÊ¹ÓÃrelloc ¶ÔdesString½øĞĞÀ©Èİ£¬ÓÉmallocµÈº¯ÊıÉú³ÉµÄdestring¿ÉÒÔÊ¹ÓÃ 0:²»ÔÊĞí 1£ºÔÊĞí
- * @param {char} ** ·µ»ØºÏ²¢Íê³ÉµÄÖ¸Õë£¬Ô­À´desstring¿ÉÒÔÅ×ÆúÊ¹ÓÃ
- * @return {int} ºÏ²¢ºóµÄ³¤¶È
+ * @Descripttion: å¯¹å­—ç¬¦ä¸²è¿›è¡Œæ’å…¥åˆå¹¶æ“ä½œäº§ç”Ÿæ–°çš„å­—ç¬¦ä¸²
+ * @param {char} *desString æ’å…¥ç›®æ ‡string
+ * @param {char} *srcString æ’å…¥å†…å®¹
+ * @param {int} desStringLen æ’å…¥ç›®æ ‡stringåŸæœ¬æœ‰æ•ˆé•¿åº¦
+ * @param {int} maxDesStringLen ç›®æ ‡stringæœ€å¤§èƒ½å­˜å‚¨çš„å­—èŠ‚æ•°
+ * @param {int} srcStringLen æ’å…¥å†…å®¹é•¿åº¦
+ * @param {int} index æ’å…¥ä½ç½®ä¸‹æ ‡
+ * @param {short} mode æ˜¯å¦å…è®¸ä½¿ç”¨relloc å¯¹desStringè¿›è¡Œæ‰©å®¹ï¼Œç”±mallocç­‰å‡½æ•°ç”Ÿæˆçš„destringå¯ä»¥ä½¿ç”¨ 0:ä¸å…è®¸ 1ï¼šå…è®¸
+ * @param {char} ** è¿”å›åˆå¹¶å®Œæˆçš„æŒ‡é’ˆï¼ŒåŸæ¥desstringå¯ä»¥æŠ›å¼ƒä½¿ç”¨
+ * @return {int} åˆå¹¶åçš„é•¿åº¦
  */
 int appendString(char *desString, char *srcString, int desStringLen, int maxDesStringLen, int srcStringLen, int index, short mode, char **newStringPinter)
 {
@@ -85,8 +85,8 @@ int appendString(char *desString, char *srcString, int desStringLen, int maxDesS
         return -1;
     }
 
-    unsigned int srcStringLenRet = 0; //ºÏ²¢ºó³¤¶È
-    //¼ÆËãºÏ²¢ºóµÄ³¤¶È, ÏÈ²»¿¼ÂÇmaxDesStringLen
+    unsigned int srcStringLenRet = 0; //åˆå¹¶åé•¿åº¦
+    //è®¡ç®—åˆå¹¶åçš„é•¿åº¦, å…ˆä¸è€ƒè™‘maxDesStringLen
     if (index <= desStringLen)
     {
         srcStringLenRet = desStringLen + srcStringLen;
@@ -96,10 +96,10 @@ int appendString(char *desString, char *srcString, int desStringLen, int maxDesS
         srcStringLenRet = index + srcStringLen;
     }
 
-    //ÊÇ·ñĞèÒªÖØĞÂ·ÖÅäÄÚ´æ
-    if (1 == mode) // mallocÉú³ÉµÄÖ¸Õë
+    //æ˜¯å¦éœ€è¦é‡æ–°åˆ†é…å†…å­˜
+    if (1 == mode) // mallocç”Ÿæˆçš„æŒ‡é’ˆ
     {
-        if (srcStringLenRet > maxDesStringLen) //ËùĞè³¤¶ÈÒÑ´óÓÚdesÔ­±¾×î´ó´æ´¢³¤¶È, ĞèÒªÖØĞÂ·ÖÅä³¤¶È
+        if (srcStringLenRet > maxDesStringLen) //æ‰€éœ€é•¿åº¦å·²å¤§äºdesåŸæœ¬æœ€å¤§å­˜å‚¨é•¿åº¦, éœ€è¦é‡æ–°åˆ†é…é•¿åº¦
         {
             newString = (char *)realloc(desString, srcStringLenRet * sizeof(char));
             if (NULL == newString)
@@ -107,7 +107,7 @@ int appendString(char *desString, char *srcString, int desStringLen, int maxDesS
                 printf("[%s]: realloc return NULL\n", TAG);
                 return -2;
             }
-            memset(newString + maxDesStringLen, 0, srcStringLenRet - maxDesStringLen); //½«ĞÂ¶à³öµÄ¿Õ¼ä³õÊ¼»¯
+            memset(newString + maxDesStringLen, 0, srcStringLenRet - maxDesStringLen); //å°†æ–°å¤šå‡ºçš„ç©ºé—´åˆå§‹åŒ–
             maxDesStringLen = srcStringLenRet;
         }
     }
@@ -121,7 +121,7 @@ int appendString(char *desString, char *srcString, int desStringLen, int maxDesS
         }
     }
 
-    // ºÏ²¢×Ö·û´®
+    // åˆå¹¶å­—ç¬¦ä¸²
     if (index <= maxDesStringLen)
     {
         int pos = 0;
@@ -131,7 +131,7 @@ int appendString(char *desString, char *srcString, int desStringLen, int maxDesS
         }
     }
     memcpy(newString + index, srcString, srcStringLen);
-    *newStringPinter = newString; //·µ»ØĞÂ´´×Ö·û´®Ö¸Õë
+    *newStringPinter = newString; //è¿”å›æ–°åˆ›å­—ç¬¦ä¸²æŒ‡é’ˆ
 
     return srcStringLenRet;
 }

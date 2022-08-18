@@ -17,11 +17,11 @@
 #include "cj_network.h"
 
 /**
- * @Descripttion: ´´½¨TCP·şÎñÆ÷
- * @param {char} *port Ê¹ÓÃµÄ¶Ë¿Ú
- * @param {char} *ip TCPµÄIP:Ò»°ã±¾µØ¸ÄµçÄÔµÄIP
- * @param {int} maxListenLen ×î³¤Listen¼àÌı³¤¶È
- * @return {int*} ´óÓÚ0£º´´½¨³É¹¦·µ»ØµÄ¼àÌıÌ×½Ó×Ösocket Ğ¡ÓÚ0£ºÊ§°Ü
+ * @Descripttion: åˆ›å»ºTCPæœåŠ¡å™¨
+ * @param {char} *port ä½¿ç”¨çš„ç«¯å£
+ * @param {char} *ip TCPçš„IP:ä¸€èˆ¬æœ¬åœ°æ”¹ç”µè„‘çš„IP
+ * @param {int} maxListenLen æœ€é•¿Listenç›‘å¬é•¿åº¦
+ * @return {int*} å¤§äº0ï¼šåˆ›å»ºæˆåŠŸè¿”å›çš„ç›‘å¬å¥—æ¥å­—socket å°äº0ï¼šå¤±è´¥
  */
 int creatListenTCPSocket(const char *port, const char *ip, int maxListenLen)
 {

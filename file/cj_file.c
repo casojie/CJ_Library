@@ -12,12 +12,12 @@
 #include "cj_file.h"
 
 /**
- * @Descripttion: Êä³öµ½ÎÄ¼şÉÏ
- * @param {char} *filePath Êä³öÄ¿±êÎÄ¼şÂ·¾¶
- * @param {char} *string Êä³öÄÚÈİ
- * @param {unsigned int} stringLen ÄÚÈİ³¤¶È
- * @param {char} *mode ÎÄ¼ş´ò¿ªÄ£Ê½£¬²ÎÊıÎ»fopenµÄ´ò¿ª²ÎÊı
- * @return {int} Êµ¼ÊĞ´ÈëÎÄ¼şµÄ³¤¶È
+ * @Descripttion: è¾“å‡ºåˆ°æ–‡ä»¶ä¸Š
+ * @param {char} *filePath è¾“å‡ºç›®æ ‡æ–‡ä»¶è·¯å¾„
+ * @param {char} *string è¾“å‡ºå†…å®¹
+ * @param {unsigned int} stringLen å†…å®¹é•¿åº¦
+ * @param {char} *mode æ–‡ä»¶æ‰“å¼€æ¨¡å¼ï¼Œå‚æ•°ä½fopençš„æ‰“å¼€å‚æ•°
+ * @return {int} å®é™…å†™å…¥æ–‡ä»¶çš„é•¿åº¦
  */
 int outputStringToFile(const char *filePath, char *string, const unsigned int stringLen, const char *mode)
 {
@@ -51,9 +51,9 @@ int outputStringToFile(const char *filePath, char *string, const unsigned int st
 
     return writeLen;
 }
-// tty²Ù×÷Àà=======================================================================================================
+// ttyæ“ä½œç±»=======================================================================================================
 /**
- * @Descripttion: ttyÉè±¸Ğ´º¯ÊıttyDeviceWrite ËùÒÀÀµº¯Êı
+ * @Descripttion: ttyè®¾å¤‡å†™å‡½æ•°ttyDeviceWrite æ‰€ä¾èµ–å‡½æ•°
  * @param {*}
  * @return {*}
  */
@@ -76,9 +76,9 @@ int os_get_tick()
     return (ms - basic_ms);
 }
 /**
- * @Descripttion: open´ò¿ªttyÉè±¸
- * @param {char*} devicePath ttyÉè±¸µØÖ·
- * @return {int} Ğ¡ÓÚµÈÓÚ0 Ê§°Ü´íÎóÂë ´óÓÚ0£¬³É¹¦£¬tty²Ù×÷¾ä±ú
+ * @Descripttion: openæ‰“å¼€ttyè®¾å¤‡
+ * @param {char*} devicePath ttyè®¾å¤‡åœ°å€
+ * @return {int} å°äºç­‰äº0 å¤±è´¥é”™è¯¯ç  å¤§äº0ï¼ŒæˆåŠŸï¼Œttyæ“ä½œå¥æŸ„
  */
 int ttyDeviceOpen(const char *devicePath)
 {
@@ -100,8 +100,8 @@ int ttyDeviceOpen(const char *devicePath)
     return devicefd;
 }
 /**
- * @Descripttion: close¹Ø±ÕttyÉè±¸
- * @param {int} devicefd tty²Ù×÷¾ä±ú
+ * @Descripttion: closeå…³é—­ttyè®¾å¤‡
+ * @param {int} devicefd ttyæ“ä½œå¥æŸ„
  * @return {*} None
  */
 void ttyDeviceClose(int devicefd)
@@ -114,10 +114,10 @@ void ttyDeviceClose(int devicefd)
     close(devicefd);
 }
 /**
- * @Descripttion: ²Ù×÷Linux ttyÉè±¸£¬´®¿ÚµÈ£¬´Ëº¯Êı³õÊ¼»¯ttyÉè±¸
- * @param {char*} devicePath ttyÉè±¸Â·¾¶
- * @param {unsigned int} baudRate ÉèÖÃµÄ²¨ÌØÂÊ
- * @return {int} Ğ¡ÓÚµÈÓÚ0£¬´íÎó£¬´óÓÚ0£ºttyÉè±¸¾ä±ú
+ * @Descripttion: æ“ä½œLinux ttyè®¾å¤‡ï¼Œä¸²å£ç­‰ï¼Œæ­¤å‡½æ•°åˆå§‹åŒ–ttyè®¾å¤‡
+ * @param {char*} devicePath ttyè®¾å¤‡è·¯å¾„
+ * @param {unsigned int} baudRate è®¾ç½®çš„æ³¢ç‰¹ç‡
+ * @return {int} å°äºç­‰äº0ï¼Œé”™è¯¯ï¼Œå¤§äº0ï¼šttyè®¾å¤‡å¥æŸ„
  */
 int ttyDeviceInit(const char *devicePath, unsigned int baudRate)
 {
@@ -151,13 +151,13 @@ int ttyDeviceInit(const char *devicePath, unsigned int baudRate)
     return devicefd;
 }
 /**
- * @Descripttion: ÉèÖÃttyµÄ²ÎÊı£¬²¨ÌØÂÊ£¬Ğ£ÑéÎ»£¬Í£Ö¹Î»
- * @param {int} devicefd tty²Ù×÷¾ä±ú
- * @param {unsigned int} baudRate ²¨ÌØÂÊ
- * @param {int} dateBits Êı¾İÎ» 7£¬8
- * @param {char} event Ğ£ÑéÎ» 'N','O','E'
- * @param {int} stopBits Í£Ö¹Î» 1,2
- * @return {int} 0:³É¹¦ ÆäËû£ºÊ§°Ü
+ * @Descripttion: è®¾ç½®ttyçš„å‚æ•°ï¼Œæ³¢ç‰¹ç‡ï¼Œæ ¡éªŒä½ï¼Œåœæ­¢ä½
+ * @param {int} devicefd ttyæ“ä½œå¥æŸ„
+ * @param {unsigned int} baudRate æ³¢ç‰¹ç‡
+ * @param {int} dateBits æ•°æ®ä½ 7ï¼Œ8
+ * @param {char} event æ ¡éªŒä½ 'N','O','E'
+ * @param {int} stopBits åœæ­¢ä½ 1,2
+ * @return {int} 0:æˆåŠŸ å…¶ä»–ï¼šå¤±è´¥
  */
 int ttyDeviceConfig(int devicefd, unsigned int baudRate, int dateBits, char event, int stopBits)
 {
@@ -326,12 +326,12 @@ int ttyDeviceConfig(int devicefd, unsigned int baudRate, int dateBits, char even
 }
 
 /**
- * @Descripttion: tty·¢ËÍº¯Êı
- * @param {int} devicefd tty²Ù×÷¾ä±ú
- * @param {char} *writeBuff Ğ´ÈëÄÚÈİ
- * @param {unsigned int} writeBuffLen Ğ´Èë³¤¶È
- * @param {unsigned int} timeOut ³¬Ê±Ê±¼ä
- * @return {int} Ğ¡ÓÚ0 Ê§°Ü£¬´óÓÚ0£º·¢ËÍ³¤¶È
+ * @Descripttion: ttyå‘é€å‡½æ•°
+ * @param {int} devicefd ttyæ“ä½œå¥æŸ„
+ * @param {char} *writeBuff å†™å…¥å†…å®¹
+ * @param {unsigned int} writeBuffLen å†™å…¥é•¿åº¦
+ * @param {unsigned int} timeOut è¶…æ—¶æ—¶é—´
+ * @return {int} å°äº0 å¤±è´¥ï¼Œå¤§äº0ï¼šå‘é€é•¿åº¦
  */
 int ttyDeviceWrite(int devicefd, char *writeBuff, unsigned int writeBuffLen, unsigned int timeOut)
 {
@@ -372,12 +372,12 @@ int ttyDeviceWrite(int devicefd, char *writeBuff, unsigned int writeBuffLen, uns
     return writeLen;
 }
 /**
- * @Descripttion: tty¶ÁÈ¡º¯Êı
- * @param {int} devicefd devicefd tty²Ù×÷¾ä±ú
- * @param {char} *readBuff ¶ÁÈëÄÚÈİ´æ´¢µØÖ·
- * @param {unsigned int} len ÆÚÍû¶ÁÈ¡µÄ³¤¶È
- * @param {unsigned int} timeOut ³¬Ê±Ê±¼ä
- * @return {int} Ğ¡ÓÚ0£ºÊ§°Ü ÆäËû£ºÊµ¼Ê¶ÁÈ¡µÄ³¤¶È
+ * @Descripttion: ttyè¯»å–å‡½æ•°
+ * @param {int} devicefd devicefd ttyæ“ä½œå¥æŸ„
+ * @param {char} *readBuff è¯»å…¥å†…å®¹å­˜å‚¨åœ°å€
+ * @param {unsigned int} len æœŸæœ›è¯»å–çš„é•¿åº¦
+ * @param {unsigned int} timeOut è¶…æ—¶æ—¶é—´
+ * @return {int} å°äº0ï¼šå¤±è´¥ å…¶ä»–ï¼šå®é™…è¯»å–çš„é•¿åº¦
  */
 int ttyDeviceRead(int devicefd, char *readBuff, unsigned int len, unsigned int timeOut)
 {

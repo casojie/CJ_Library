@@ -7,28 +7,28 @@
  */
 #ifndef _CJ_STRING_H_
 #define _CJ_STRING_H_
-// string Óë arrayµÄÇø±ğÎª£ºstringÄ©Î²ÓĞ¡®\0¡¯
+// string ä¸ arrayçš„åŒºåˆ«ä¸ºï¼šstringæœ«å°¾æœ‰â€˜\0â€™
 #include <stdio.h>
 
 /**
- * @Descripttion: ×Ö·û´®ÅÅĞò£¬¶Ô×Ö·û´®°´ÕÕASIIÂë½øĞĞÅÅĞò
- * @param {char} *string Ä¿±ê×Ö·û´®
- * @param {unsigned int} stringLen Ä¿±ê×Ö·û´®³¤¶È£¬×¢Òâ£º°üÀ¨Ä©Î²µÄ'\0'
- * @param {short} mode ÅÅĞòÄ£Ê½ 0£º´ÓĞ¡µ½´ó 1:´Ó´óµ½Ğ¡
+ * @Descripttion: å­—ç¬¦ä¸²æ’åºï¼Œå¯¹å­—ç¬¦ä¸²æŒ‰ç…§ASIIç è¿›è¡Œæ’åº
+ * @param {char} *string ç›®æ ‡å­—ç¬¦ä¸²
+ * @param {unsigned int} stringLen ç›®æ ‡å­—ç¬¦ä¸²é•¿åº¦ï¼Œæ³¨æ„ï¼šåŒ…æ‹¬æœ«å°¾çš„'\0'
+ * @param {short} mode æ’åºæ¨¡å¼ 0ï¼šä»å°åˆ°å¤§ 1:ä»å¤§åˆ°å°
  * @return {*}
  */
 void stringSort(char *string, unsigned int stringLen, short mode);
 /**
- * @Descripttion: ¶Ô×Ö·û´®½øĞĞ²åÈëºÏ²¢²Ù×÷²úÉúĞÂµÄ×Ö·û´®
- * @param {char} *desString ²åÈëÄ¿±êstring
- * @param {char} *srcString ²åÈëÄÚÈİ
- * @param {int} desStringLen ²åÈëÄ¿±êstringÔ­±¾ÓĞĞ§³¤¶È
- * @param {int} maxDesStringLen Ä¿±êstring×î´óÄÜ´æ´¢µÄ×Ö½ÚÊı
- * @param {int} srcStringLen ²åÈëÄÚÈİ³¤¶È
- * @param {int} index ²åÈëÎ»ÖÃÏÂ±ê
- * @param {short} mode ÊÇ·ñÔÊĞíÊ¹ÓÃrelloc ¶ÔdesString½øĞĞÀ©Èİ£¬ÓÉmallocµÈº¯ÊıÉú³ÉµÄdestring¿ÉÒÔÊ¹ÓÃ 0:²»ÔÊĞí 1£ºÔÊĞí
- * @param {char} ** ·µ»ØºÏ²¢Íê³ÉµÄÖ¸Õë£¬Ô­À´desstring¿ÉÒÔÅ×ÆúÊ¹ÓÃ
- * @return {int} ºÏ²¢ºóµÄ³¤¶È
+ * @Descripttion: å¯¹å­—ç¬¦ä¸²è¿›è¡Œæ’å…¥åˆå¹¶æ“ä½œäº§ç”Ÿæ–°çš„å­—ç¬¦ä¸²
+ * @param {char} *desString æ’å…¥ç›®æ ‡string
+ * @param {char} *srcString æ’å…¥å†…å®¹
+ * @param {int} desStringLen æ’å…¥ç›®æ ‡stringåŸæœ¬æœ‰æ•ˆé•¿åº¦
+ * @param {int} maxDesStringLen ç›®æ ‡stringæœ€å¤§èƒ½å­˜å‚¨çš„å­—èŠ‚æ•°
+ * @param {int} srcStringLen æ’å…¥å†…å®¹é•¿åº¦
+ * @param {int} index æ’å…¥ä½ç½®ä¸‹æ ‡
+ * @param {short} mode æ˜¯å¦å…è®¸ä½¿ç”¨relloc å¯¹desStringè¿›è¡Œæ‰©å®¹ï¼Œç”±mallocç­‰å‡½æ•°ç”Ÿæˆçš„destringå¯ä»¥ä½¿ç”¨ 0:ä¸å…è®¸ 1ï¼šå…è®¸
+ * @param {char} ** è¿”å›åˆå¹¶å®Œæˆçš„æŒ‡é’ˆï¼ŒåŸæ¥desstringå¯ä»¥æŠ›å¼ƒä½¿ç”¨
+ * @return {int} åˆå¹¶åçš„é•¿åº¦
  */
 int appendString(char *desString, char *srcString, int desStringLen, int maxDesStringLen, int srcStringLen, int index, short mode, char **newStringPinter)
 #endif

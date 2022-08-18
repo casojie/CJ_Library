@@ -1,11 +1,11 @@
 #include "cj_array.h"
 
 /**
- * @Descripttion: ¶ÔÊı×éÔªËØ½øĞĞ¿ìËÙÅÅĞò Çë×¢ÒâĞŞ¸ÄÊı×éÔªËØÀàĞÍ£¬Ä¬ÈÏÎªint
- * @param {void} *array ÅÅĞòÊı×é
- * @param {int} start ²ÉÓÃ¿ìËÙÅÅĞò£¬Òª¿ªÊ¼ÅÅĞòµÄÏÂ±ê
- * @param {int} end ²ÉÓÃ¿ìËÙÅÅĞò£¬ÒªÍ£Ö¹ÅÅĞòµÄÏÂ±ê
- * @param {char} mode ÅÅĞòÄ£Ê½ 0: ´ÓĞ¡µ½´ó 1£º´Ó´óµ½Ğ¡
+ * @Descripttion: å¯¹æ•°ç»„å…ƒç´ è¿›è¡Œå¿«é€Ÿæ’åº è¯·æ³¨æ„ä¿®æ”¹æ•°ç»„å…ƒç´ ç±»å‹ï¼Œé»˜è®¤ä¸ºint
+ * @param {void} *array æ’åºæ•°ç»„
+ * @param {int} start é‡‡ç”¨å¿«é€Ÿæ’åºï¼Œè¦å¼€å§‹æ’åºçš„ä¸‹æ ‡
+ * @param {int} end é‡‡ç”¨å¿«é€Ÿæ’åºï¼Œè¦åœæ­¢æ’åºçš„ä¸‹æ ‡
+ * @param {char} mode æ’åºæ¨¡å¼ 0: ä»å°åˆ°å¤§ 1ï¼šä»å¤§åˆ°å°
  * @return {*} None
  */
 void quickSort(void *array, int start, int end, char mode)
@@ -56,16 +56,16 @@ void quickSort(void *array, int start, int end, char mode)
             }
         }
         array_tmp[left_tmp] = temp;
-        quickSort(array_tmp, start, left_tmp - 1, mode); // µİ¹éµ÷ÓÃ
+        quickSort(array_tmp, start, left_tmp - 1, mode); // é€’å½’è°ƒç”¨
         quickSort(array_tmp, left_tmp + 1, end, mode);
     }
 }
 /**
- * @Descripttion: ÔÚÊı×éÖĞ²éÕÒÌØ¶¨ÔªËØ, Çë×¢ÒâĞŞ¸ÄÊı×éÔªËØÀàĞÍ£¬Ä¬ÈÏÎªint
- * @param {void} *array Ä¿±êÊı×é
- * @param {unsigned int} arrayLen ËØ×é³¤¶È
- * @param {void} *element  Ä¿±êÔªËØ
- * @return {int} Ä¿±êÔªËØÏÂ±ê£ºĞ¡ÓÚ0£¬²éÕÒÊ§°Ü£¬´óÓÚ0£ºÄ¿±êÔªËØÏÂ±ê
+ * @Descripttion: åœ¨æ•°ç»„ä¸­æŸ¥æ‰¾ç‰¹å®šå…ƒç´ , è¯·æ³¨æ„ä¿®æ”¹æ•°ç»„å…ƒç´ ç±»å‹ï¼Œé»˜è®¤ä¸ºint
+ * @param {void} *array ç›®æ ‡æ•°ç»„
+ * @param {unsigned int} arrayLen ç´ ç»„é•¿åº¦
+ * @param {void} *element  ç›®æ ‡å…ƒç´ 
+ * @return {int} ç›®æ ‡å…ƒç´ ä¸‹æ ‡ï¼šå°äº0ï¼ŒæŸ¥æ‰¾å¤±è´¥ï¼Œå¤§äº0ï¼šç›®æ ‡å…ƒç´ ä¸‹æ ‡
  */
 int findElement(void *array, unsigned int arrayLen, void *element)
 {
@@ -85,11 +85,11 @@ int findElement(void *array, unsigned int arrayLen, void *element)
     return -1;
 }
 /**
- * @Descripttion: ÔÚÊı×éÖĞ²éÕÒÖµ×î´óÔªËØ Çë×¢ÒâĞŞ¸ÄÊı×éÔªËØÀàĞÍ£¬Ä¬ÈÏÎªint
- * @param {void} *array Ä¿±êÊı×é
- * @param {unsigned int} arrayLen Ä¿±êËØ×é³¤¶È
- * @param {void} *maxElement ²éÕÒµÄÖµ×î´óÔªËØ
- * @return {unsigned int} Ä¿±êÔªËØÏÂ±ê£ºĞ¡ÓÚ0£¬²éÕÒÊ§°Ü£¬´óÓÚ0£ºÄ¿±êÔªËØÏÂ±ê
+ * @Descripttion: åœ¨æ•°ç»„ä¸­æŸ¥æ‰¾å€¼æœ€å¤§å…ƒç´  è¯·æ³¨æ„ä¿®æ”¹æ•°ç»„å…ƒç´ ç±»å‹ï¼Œé»˜è®¤ä¸ºint
+ * @param {void} *array ç›®æ ‡æ•°ç»„
+ * @param {unsigned int} arrayLen ç›®æ ‡ç´ ç»„é•¿åº¦
+ * @param {void} *maxElement æŸ¥æ‰¾çš„å€¼æœ€å¤§å…ƒç´ 
+ * @return {unsigned int} ç›®æ ‡å…ƒç´ ä¸‹æ ‡ï¼šå°äº0ï¼ŒæŸ¥æ‰¾å¤±è´¥ï¼Œå¤§äº0ï¼šç›®æ ‡å…ƒç´ ä¸‹æ ‡
  */
 unsigned int findMaxElement(void *array, unsigned int arrayLen, void *maxElement)
 {
@@ -114,11 +114,11 @@ unsigned int findMaxElement(void *array, unsigned int arrayLen, void *maxElement
     return maxIndex;
 }
 /**
- * @Descripttion: ÔÚÊı×éÖĞ²éÕÒÖµ×îĞ¡ÔªËØ Çë×¢ÒâĞŞ¸ÄÊı×éÔªËØÀàĞÍ£¬Ä¬ÈÏÎªint
- * @param {void} *array Ä¿±êÊı×é
- * @param {unsigned int} arrayLen Ä¿±êËØ×é³¤¶È
- * @param {void} *maxElement ²éÕÒµÄÖµ×î´óÔªËØ
- * @return {unsigned int} Ä¿±êÔªËØÏÂ±ê£ºĞ¡ÓÚ0£¬²éÕÒÊ§°Ü£¬´óÓÚ0£ºÄ¿±êÔªËØÏÂ±ê
+ * @Descripttion: åœ¨æ•°ç»„ä¸­æŸ¥æ‰¾å€¼æœ€å°å…ƒç´  è¯·æ³¨æ„ä¿®æ”¹æ•°ç»„å…ƒç´ ç±»å‹ï¼Œé»˜è®¤ä¸ºint
+ * @param {void} *array ç›®æ ‡æ•°ç»„
+ * @param {unsigned int} arrayLen ç›®æ ‡ç´ ç»„é•¿åº¦
+ * @param {void} *maxElement æŸ¥æ‰¾çš„å€¼æœ€å¤§å…ƒç´ 
+ * @return {unsigned int} ç›®æ ‡å…ƒç´ ä¸‹æ ‡ï¼šå°äº0ï¼ŒæŸ¥æ‰¾å¤±è´¥ï¼Œå¤§äº0ï¼šç›®æ ‡å…ƒç´ ä¸‹æ ‡
  */
 unsigned int findMinElement(void *array, unsigned int arrayLen, void *minElement)
 {
@@ -143,9 +143,9 @@ unsigned int findMinElement(void *array, unsigned int arrayLen, void *minElement
     return minIndex;
 }
 /**
- * @Descripttion: ½«Êı×éÒÔ16½øÖÆÊä³ö
- * @param {void} *array ´ıÊä³öÊı×é
- * @param {unsigned int} arrayLen ´ıÊä³öÊı×é³¤¶È
+ * @Descripttion: å°†æ•°ç»„ä»¥16è¿›åˆ¶è¾“å‡º
+ * @param {void} *array å¾…è¾“å‡ºæ•°ç»„
+ * @param {unsigned int} arrayLen å¾…è¾“å‡ºæ•°ç»„é•¿åº¦
  * @return {*} None
  */
 void printfHex(void *array, unsigned int arrayLen)
