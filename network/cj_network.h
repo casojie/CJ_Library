@@ -2,7 +2,7 @@
  * @Author       : CaoJie
  * @Date         : 2022-04-15 15:25:18
  * @LastEditors  : CaoJie
- * @LastEditTime : 2022-04-19 16:56:31
+ * @LastEditTime : 2022-08-19 11:51:58
  * @Description  : file content
  */
 #ifndef _CJ_NETWORK_H_
@@ -16,14 +16,21 @@
  * @param {int} maxListenLen 最长Listen监听长度
  * @return {int*} 大于0：创建成功返回的监听套接字socket 小于0：失败
  */
-int creatListenTCPSocket(const char *port, const char *ip, int maxListenLen);
+int CreatListenTCPSocket(const char *port, const char *ip, int maxListenLen);
 /**
  * @Descripttion: 创建UDP服务器
  * @param {char} *port 使用的端口
  * @param {char} *ip UDP的IP
- * @param {int} maxListenLen 最大监听长度
+ * @param {struct sockaddr_in} sockaddr_in结构体
  * @return {*} 大于0：创建成功返回的监听套接字socket 小于0：失败
  */
-int creatListenUDPSocket(const char *port, const char *ip, int maxListenLen);
+int CreatListenUDPSocket(const char *port, const char *ip, struct sockaddr_in *addr);
+/**
+ * @Descripttion: 获取网卡当前的IP地址
+ * @param {char} *ethName 网卡名称
+ * @param {char} *ip 获取到的IP
+ * @return {*} 大于0：成功 小于0：失败
+ */
+int GetLocalIP(const char *ethName, char *ip);
 
 #endif
