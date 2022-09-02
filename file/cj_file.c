@@ -199,16 +199,19 @@ int ttyDeviceConfig(int devicefd, unsigned int baudRate, int dateBits, char even
 
     switch (event)
     {
+    case 'o':
     case 'O':
         ttyTermios.c_cflag |= PARENB;
         ttyTermios.c_cflag |= PARODD;
-        ttyTermios.c_iflag |= (INPCK | ISTRIP);
+        ttyTermios.c_cflag |= (INPCK | ISTRIP);
         break;
+    case 'e':
     case 'E':
-        ttyTermios.c_iflag |= (INPCK | ISTRIP);
+        ttyTermios.c_cflag |= (INPCK | ISTRIP);
         ttyTermios.c_cflag |= PARENB;
         ttyTermios.c_cflag &= ~PARODD;
         break;
+    case 'n'
     case 'N':
         ttyTermios.c_cflag &= ~PARENB;
         break;
